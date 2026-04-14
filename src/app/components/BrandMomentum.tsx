@@ -24,7 +24,7 @@ export function BrandMomentum() {
       <FloatingOrb x="50%" y="80%" size={180} color={SAGE}   delay={4} />
 
       {/* Section heading */}
-      <div className="flex items-center gap-5 mb-10">
+      <div className="flex flex-wrap items-center gap-5 mb-10">
         <BrawnFoxLogo width={143} />
         <div style={{ width: 1, height: 28, background: DECO }} />
         <p style={{ color: LABEL_COLOR, fontSize: 13, letterSpacing: '0.3em', textTransform: 'uppercase' }}>Brand Momentum</p>
@@ -36,7 +36,7 @@ export function BrandMomentum() {
       </div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-0">
         {momentumStats.map((s, i) => (
           <motion.div
             key={s.label}
@@ -44,7 +44,8 @@ export function BrandMomentum() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.12, duration: 0.6 }}
-            style={{ padding: '0 36px', borderLeft: i > 0 ? `1px solid ${DECO}` : 'none' }}
+            className={i > 0 ? 'lg:border-l' : ''}
+            style={{ padding: '0 36px', borderLeftColor: i > 0 ? DECO : undefined }}
           >
             <Label>{s.label}</Label>
             <motion.p
@@ -59,7 +60,7 @@ export function BrandMomentum() {
 
       <div style={{ height: 1, background: `linear-gradient(to right, ${COPPER}20, ${GOLD}30, ${SAGE}20)`, margin: '36px 0 22px' }} />
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <p style={{ color: LABEL_COLOR, fontSize: 12, letterSpacing: '0.2em' }}>
           GEORGIA COLLECTION · MARCH 24 – APRIL 13, 2026 · 15-DAY INTEGRATED CAMPAIGN
         </p>

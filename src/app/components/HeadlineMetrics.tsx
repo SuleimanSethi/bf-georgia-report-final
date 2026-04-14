@@ -29,9 +29,9 @@ export function HeadlineMetrics() {
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: globalIdx * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className={i > 0 ? 'sm:border-l' : ''}
+                className={`sm:!px-10 ${i > 0 ? 'sm:border-l' : ''}`}
                 style={{
-                  padding: '0 40px',
+                  padding: '0 8px',
                   borderLeftColor: DECO,
                   position: 'relative',
                 }}
