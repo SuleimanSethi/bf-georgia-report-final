@@ -26,8 +26,8 @@ export function MetaAdsSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 + i * 0.12, duration: 0.5 }}
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <span style={{ color: ad.winner ? TEXT : ad.roas ? SUB : LABEL, fontSize: 16 }}>
                     {ad.ad} Carousel
                   </span>
@@ -65,7 +65,7 @@ export function MetaAdsSection() {
       {/* Audience reach */}
       <div className="my-6">
         <Label>Audience Reach</Label>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {[
             { label: 'Unique Reach', value: '40,376', color: GOLD_BRIGHT   },
             { label: 'Impressions',  value: '83,526', color: COPPER_BRIGHT },
@@ -90,7 +90,7 @@ export function MetaAdsSection() {
 
       {/* Channel split */}
       <div className="mt-6">
-        <Label>Channel Split — Facebook vs Instagram</Label>
+        <p style={{ color: LABEL, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Channel Split — Facebook vs Instagram</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
           {placements.map((p) => (
             <div key={p.name} style={{
