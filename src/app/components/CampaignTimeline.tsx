@@ -7,7 +7,7 @@ import { GOLD, GOLD_BRIGHT, COPPER_BRIGHT, DECO, TEXT, SUB, PAGE_BG } from '../t
 
 export function CampaignTimeline() {
   return (
-    <section style={{ padding: '52px 64px', background: `radial-gradient(ellipse at 50% 50%, rgba(196,120,72,0.05) 0%, transparent 70%), ${PAGE_BG}` }}>
+    <section id="section-timeline" style={{ padding: '52px 64px', background: `radial-gradient(ellipse at 50% 50%, rgba(196,120,72,0.05) 0%, transparent 70%), ${PAGE_BG}` }}>
       <SectionTitle color={COPPER_BRIGHT}>Campaign Timeline</SectionTitle>
 
       {/* Timeline track */}
@@ -30,7 +30,18 @@ export function CampaignTimeline() {
           transition={{ duration: 2.5, ease: 'easeOut', delay: 0.4 }}
         />
 
-        {timelineEvents.map((ev, i) => (
+        {timelineEvents.map((ev, i) => {
+          const isLast = i === timelineEvents.length - 1;
+          const align = isLast || i === 2 ? 'flex-end' : i === 3 ? 'flex-start' : 'center' as const;
+          const ta = isLast || i === 2 ? 'right' : i === 3 ? 'left' : 'center' as const;
+          // Apr 4 (i=2) anchors RIGHT edge at 55%, text trails left
+          // Apr 6 (i=3) anchors LEFT edge at 65%, text trails right
+          const posStyle = isLast
+            ? { right: 0 }
+            : i === 2
+            ? { right: `${100 - ev.pct}%` }
+            : { left: `${ev.pct}%` };
+          return (
           <motion.div
             key={ev.date}
             initial={{ opacity: 0, y: i % 2 === 0 ? -14 : 14 }}
@@ -38,19 +49,17 @@ export function CampaignTimeline() {
             transition={{ delay: 0.5 + i * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: 'absolute',
-              ...(i === timelineEvents.length - 1
-                ? { right: 0 }
-                : { left: `${ev.pct}%`, transform: 'translateX(-50%)' }),
+              ...posStyle,
               top: 0,
               display: 'flex', flexDirection: 'column',
-              alignItems: i === timelineEvents.length - 1 ? 'flex-end' : 'center',
+              alignItems: align,
             }}
           >
-            <div style={{ height: 48, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: i === timelineEvents.length - 1 ? 'flex-end' : 'center', gap: 2 }}>
+            <div style={{ height: 48, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: align, gap: 2 }}>
               {i % 2 === 0 && (
                 <>
-                  <p style={{ color: TEXT, fontSize: 14, letterSpacing: '0.08em', whiteSpace: 'nowrap', textAlign: i === timelineEvents.length - 1 ? 'right' : 'center' }}>{ev.label}</p>
-                  <p style={{ color: SUB,  fontSize: 12, letterSpacing: '0.1em',  whiteSpace: 'nowrap', textAlign: i === timelineEvents.length - 1 ? 'right' : 'center' }}>{ev.desc}</p>
+                  <p style={{ color: TEXT, fontSize: 14, letterSpacing: '0.08em', whiteSpace: 'nowrap', textAlign: ta }}>{ev.label}</p>
+                  <p style={{ color: SUB,  fontSize: 12, letterSpacing: '0.1em',  whiteSpace: 'nowrap', textAlign: ta }}>{ev.desc}</p>
                 </>
               )}
             </div>
@@ -62,17 +71,18 @@ export function CampaignTimeline() {
                 transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.4 }}
               />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: i === timelineEvents.length - 1 ? 'flex-end' : 'center', gap: 2, height: 48 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: align, gap: 2, height: 48 }}>
               <p style={{ color: ev.color, fontSize: 13, letterSpacing: '0.2em', whiteSpace: 'nowrap', textShadow: `0 0 14px ${ev.color}90` }}>{ev.date}</p>
               {i % 2 !== 0 && (
                 <>
-                  <p style={{ color: TEXT, fontSize: 14, letterSpacing: '0.08em', whiteSpace: 'nowrap', textAlign: i === timelineEvents.length - 1 ? 'right' : 'center' }}>{ev.label}</p>
-                  <p style={{ color: SUB,  fontSize: 12, letterSpacing: '0.1em',  whiteSpace: 'nowrap', textAlign: i === timelineEvents.length - 1 ? 'right' : 'center' }}>{ev.desc}</p>
+                  <p style={{ color: TEXT, fontSize: 14, letterSpacing: '0.08em', whiteSpace: 'nowrap', textAlign: ta }}>{ev.label}</p>
+                  <p style={{ color: SUB,  fontSize: 12, letterSpacing: '0.1em',  whiteSpace: 'nowrap', textAlign: ta }}>{ev.desc}</p>
                 </>
               )}
             </div>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Week cards */}
