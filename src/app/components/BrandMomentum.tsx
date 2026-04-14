@@ -8,7 +8,7 @@ import { GOLD, GOLD_BRIGHT, GOLD_DIM, SAGE, COPPER, COPPER_BRIGHT, SAGE_BRIGHT, 
 
 export function BrandMomentum() {
   return (
-    <section style={{
+    <section id="section-brand-momentum" style={{
       position: 'relative',
       background: `radial-gradient(ellipse at 20% 100%, rgba(196,120,72,0.10) 0%, transparent 55%),
                    radial-gradient(ellipse at 80% 0%, rgba(110,139,110,0.08) 0%, transparent 55%),
@@ -16,6 +16,7 @@ export function BrandMomentum() {
                    ${PAGE_BG}`,
       borderTop: `1px solid rgba(201,168,76,0.22)`,
       padding: '48px 64px',
+      overflow: 'hidden',
     }}>
       <div style={{ position: 'absolute', top: 0, left: '20%', right: '20%', height: 1, background: `linear-gradient(90deg, transparent, ${COPPER}60, ${GOLD_BRIGHT}90, ${SAGE}60, transparent)`, boxShadow: `0 0 20px ${GOLD}50` }} />
       <FloatingOrb x="5%"  y="10%" size={300} color={GOLD}   delay={0} />
