@@ -36,7 +36,7 @@ export function BrandMomentum() {
       </div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-4 gap-0">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-0">
         {momentumStats.map((s, i) => (
           <motion.div
             key={s.label}

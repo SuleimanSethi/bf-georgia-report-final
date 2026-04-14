@@ -7,11 +7,11 @@ import { GOLD, GOLD_BRIGHT, COPPER_BRIGHT, DECO, TEXT, SUB, PAGE_BG } from '../t
 
 export function CampaignTimeline() {
   return (
-    <section id="section-timeline" style={{ padding: '52px 64px', background: `radial-gradient(ellipse at 50% 50%, rgba(196,120,72,0.05) 0%, transparent 70%), ${PAGE_BG}` }}>
+    <section id="section-timeline" style={{ padding: '52px 64px', overflow: 'hidden', background: `radial-gradient(ellipse at 50% 50%, rgba(196,120,72,0.05) 0%, transparent 70%), ${PAGE_BG}` }}>
       <SectionTitle color={COPPER_BRIGHT}>Campaign Timeline</SectionTitle>
 
       {/* Timeline track */}
-      <div style={{ position: 'relative', height: 130, marginBottom: 48 }}>
+      <div style={{ position: 'relative', height: 130, marginBottom: 48, overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 60, left: 0, right: 0, height: 1, background: DECO }} />
         <motion.div
           initial={{ scaleX: 0 }}
@@ -86,7 +86,7 @@ export function CampaignTimeline() {
       </div>
 
       {/* Week cards */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {weekData.map((w, i) => (
           <Card key={w.phase} accent={w.accent}>
             <div className="flex flex-col gap-5">

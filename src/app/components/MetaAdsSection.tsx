@@ -65,7 +65,7 @@ export function MetaAdsSection() {
       {/* Audience reach */}
       <div className="my-6">
         <Label>Audience Reach</Label>
-        <div className="grid grid-cols-4 gap-4 mt-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
           {[
             { label: 'Unique Reach', value: '40,376', color: GOLD_BRIGHT   },
             { label: 'Impressions',  value: '83,526', color: COPPER_BRIGHT },
@@ -91,7 +91,7 @@ export function MetaAdsSection() {
       {/* Channel split */}
       <div className="mt-6">
         <Label>Channel Split — Facebook vs Instagram</Label>
-        <div className="grid grid-cols-2 gap-5 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
           {placements.map((p) => (
             <div key={p.name} style={{
               padding: 18,

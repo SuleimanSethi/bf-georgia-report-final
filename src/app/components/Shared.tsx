@@ -73,12 +73,13 @@ export function GlowDivider({ color = GOLD }: { color?: string }) {
 
 // ─── Card ──────────────────────────────────────────────────────────────────────
 export function Card({
-  children, className = '', accent = GOLD, floatAnim = false,
+  children, className = '', accent = GOLD, floatAnim = false, id,
 }: {
-  children: React.ReactNode; className?: string; accent?: string; floatAnim?: boolean;
+  children: React.ReactNode; className?: string; accent?: string; floatAnim?: boolean; id?: string;
 }) {
   return (
     <motion.div
+      id={id}
       className={`relative card-shimmer ${className}`}
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}

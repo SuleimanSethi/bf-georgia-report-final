@@ -9,7 +9,7 @@ export function ProductSection() {
   return (
     <Card id="section-product-performance" className="h-full" accent="#A89070">
       <SectionTitle color={GOLD_BRIGHT}>Product Performance</SectionTitle>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
         {/* SKU breakdown */}
         <div style={{ overflow: 'hidden' }}>

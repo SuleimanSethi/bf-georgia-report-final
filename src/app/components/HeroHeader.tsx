@@ -41,14 +41,14 @@ export function HeroHeader() {
         </svg>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         {/* Left */}
         <div className="flex flex-col gap-5">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <BrawnFoxLogo width={172} />
           </motion.div>
           <motion.div className="flex flex-col gap-2" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className="flex items-baseline gap-5">
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-5">
               <h1 className="hero-title" style={{ fontSize: 42, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 300 }}>
                 Georgia Collection
               </h1>
@@ -56,7 +56,7 @@ export function HeroHeader() {
                 Campaign Performance
               </span>
             </div>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-5">
               <span style={{ color: SUB, fontSize: 14, letterSpacing: '0.2em' }}>March 24 – April 13, 2026</span>
               <span style={{ color: GOLD_DIM }}>·</span>
               <span style={{ color: SUB, fontSize: 14, letterSpacing: '0.2em' }}>15 Days</span>
@@ -67,7 +67,7 @@ export function HeroHeader() {
         </div>
 
         {/* Right */}
-        <motion.div className="flex flex-col items-end gap-5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+        <motion.div className="flex flex-col items-start lg:items-end gap-5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             border: `1px solid ${SAGE}50`,
@@ -85,7 +85,7 @@ export function HeroHeader() {
               { label: 'Impressions',  value: '83,526', color: COPPER_BRIGHT },
               { label: 'Add-to-Cart',  value: '205',    color: SAGE_BRIGHT   },
             ].map((s) => (
-              <div key={s.label} className="text-right">
+              <div key={s.label} className="text-left lg:text-right">
                 <p style={{ color: LABEL, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{s.label}</p>
                 <p style={{ color: s.color, fontFamily: 'ui-monospace, monospace', fontSize: 26, marginTop: 3, textShadow: `0 0 18px ${s.color}60` }}>{s.value}</p>
               </div>

@@ -140,3 +140,26 @@ html, body {
   background-size: 200% 100%;
   animation: border-chase 6s linear infinite;
 }
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  header, section {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  header, section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .hero-title {
+    font-size: 24px !important;
+    letter-spacing: 0.08em !important;
+  }
+}

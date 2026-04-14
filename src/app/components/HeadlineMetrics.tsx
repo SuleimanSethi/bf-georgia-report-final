@@ -10,6 +10,7 @@ export function HeadlineMetrics() {
     <section style={{
       position: 'relative',
       padding: '72px 64px 52px',
+      overflow: 'hidden',
       background: `radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.09) 0%, transparent 55%),
                    radial-gradient(ellipse at 0% 100%, rgba(196,120,72,0.06) 0%, transparent 50%),
                    radial-gradient(ellipse at 100% 50%, rgba(110,139,110,0.05) 0%, transparent 50%),
@@ -19,7 +20,7 @@ export function HeadlineMetrics() {
       <FloatingOrb x="75%" y="50%" size={180} color={COPPER} delay={2} />
 
       {[headlineRow1, headlineRow2].map((row, rowIdx) => (
-        <div key={rowIdx} className={`grid grid-cols-3 gap-0 ${rowIdx === 0 ? 'mb-10' : ''}`}>
+        <div key={rowIdx} className={`grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 ${rowIdx === 0 ? 'mb-10' : ''}`}>
           {row.map((m, i) => {
             const globalIdx = rowIdx * 3 + i;
             return (
@@ -28,9 +29,10 @@ export function HeadlineMetrics() {
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: globalIdx * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className={i > 0 ? 'sm:border-l' : ''}
                 style={{
                   padding: '0 40px',
-                  borderLeft: i > 0 ? `1px solid ${DECO}` : 'none',
+                  borderLeftColor: DECO,
                   position: 'relative',
                 }}
               >

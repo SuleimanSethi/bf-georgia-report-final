@@ -34,24 +34,24 @@ export function Dashboard() {
         <CampaignTimeline />
         <GlowDivider color={SAGE} />
 
-        <section style={{ padding: '52px 64px' }}>
-          <div className="grid gap-6" style={{ gridTemplateColumns: '3fr 2fr' }}>
+        <section id="section-meta-email" style={{ padding: '52px 64px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
             <MetaAdsSection />
             <EmailSection />
           </div>
         </section>
         <GlowDivider color={GOLD} />
 
-        <section style={{ padding: '52px 64px' }}>
-          <div className="grid gap-6" style={{ gridTemplateColumns: '3fr 2fr' }}>
+        <section id="section-product-customer" style={{ padding: '52px 64px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
             <ProductSection />
             <CustomerSection />
           </div>
         </section>
         <GlowDivider color={TEAL} />
 
-        <section style={{ padding: '52px 64px' }}>
-          <div className="grid grid-cols-3 gap-6">
+        <section id="section-bottom-row" style={{ padding: '52px 64px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <GeographySection />
             <AttributionSection />
             <BaselineSection />
