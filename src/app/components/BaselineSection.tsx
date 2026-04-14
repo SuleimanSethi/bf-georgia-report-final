@@ -1,13 +1,13 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Card, SectionTitle, Label } from './Shared';
+import { Card, SectionTitle } from './Shared';
 import { baselineRows } from '../../data/campaign';
 import { GOLD, GOLD_BRIGHT, COPPER, COPPER_BRIGHT, CARD_BG, SUB, LABEL, TEXT, DECO } from '../tokens';
 
 export function BaselineSection() {
   return (
-    <Card className="h-full" accent="#B06858">
+    <Card id="section-campaign-lift" className="h-full" accent="#B06858">
       <SectionTitle color={COPPER_BRIGHT}>Campaign Lift vs Baseline</SectionTitle>
 
       {/* Hero lift numbers */}
@@ -23,8 +23,8 @@ export function BaselineSection() {
             { label: 'Daily Order Rate', lift: '5×',   baseline: '~1.9/day', campaign: '10.0/day',  color: GOLD_BRIGHT   },
             { label: 'Daily Revenue',    lift: '5.3×', baseline: '~$86/day', campaign: '~$454/day', color: COPPER_BRIGHT },
           ].map((c, i) => (
-            <div key={c.label}>
-              <Label>{c.label}</Label>
+            <div key={c.label} style={{ overflow: 'hidden' }}>
+              <p style={{ color: LABEL, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>{c.label}</p>
               <motion.p
                 style={{ color: c.color, fontFamily: 'ui-monospace, monospace', fontSize: 57, lineHeight: 1, marginTop: 6, textShadow: `0 0 30px ${c.color}60` }}
                 animate={{ opacity: [0.85, 1, 0.85] }}
