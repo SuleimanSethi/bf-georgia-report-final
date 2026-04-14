@@ -18,7 +18,7 @@ export function BaselineSection() {
         boxShadow: `0 0 40px ${GOLD}10`,
         marginBottom: 24,
       }}>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-6">
           {[
             { label: 'Daily Order Rate', lift: '5×',   baseline: '~1.9/day', campaign: '10.0/day',  color: GOLD_BRIGHT   },
             { label: 'Daily Revenue',    lift: '5.3×', baseline: '~$86/day', campaign: '~$454/day', color: COPPER_BRIGHT },
