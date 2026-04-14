@@ -1,19 +1,19 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Card, SectionTitle, Label, GlowBar } from './Shared';
+import { Card, SectionTitle, GlowBar } from './Shared';
 import { products, cartData } from '../../data/campaign';
 import { GOLD, GOLD_BRIGHT, GOLD_DIM, COPPER, PAGE_BG, TEXT, SUB, LABEL } from '../tokens';
 
 export function ProductSection() {
   return (
-    <Card className="h-full" accent="#A89070">
+    <Card id="section-product-performance" className="h-full" accent="#A89070">
       <SectionTitle color={GOLD_BRIGHT}>Product Performance</SectionTitle>
       <div className="grid grid-cols-2 gap-10">
 
         {/* SKU breakdown */}
-        <div>
-          <Label>Units by SKU — Georgia Collection</Label>
+        <div style={{ overflow: 'hidden' }}>
+          <p style={{ color: LABEL, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Units by SKU — Georgia Collection</p>
           <div className="flex flex-col gap-3 mt-4">
             {products.map((p, i) => (
               <div key={p.name} className="flex flex-col gap-1">
@@ -38,8 +38,8 @@ export function ProductSection() {
         </div>
 
         {/* Mixed-cart AOV */}
-        <div>
-          <Label>Mixed-Cart Lift — AOV by Order Type</Label>
+        <div style={{ overflow: 'hidden' }}>
+          <p style={{ color: LABEL, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Mixed-Cart Lift — AOV by Order Type</p>
           <div className="flex flex-col gap-4 mt-4">
             {cartData.map((c, i) => (
               <motion.div
