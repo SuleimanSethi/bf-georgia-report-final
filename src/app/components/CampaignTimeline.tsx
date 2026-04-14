@@ -38,7 +38,7 @@ export function CampaignTimeline() {
           // Apr 6 (i=3) anchors LEFT edge at 65%, text trails right
           const posStyle = isLast
             ? { right: 0 }
-            : { left: i === 2 ? '50%' : `${ev.pct}%` };
+            : { left: i === 2 ? '43%' : `${ev.pct}%` };
           return (
           <motion.div
             key={ev.date}
