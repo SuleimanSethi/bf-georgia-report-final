@@ -32,15 +32,13 @@ export function CampaignTimeline() {
 
         {timelineEvents.map((ev, i) => {
           const isLast = i === timelineEvents.length - 1;
-          const align = isLast || i === 2 ? 'flex-end' : i === 3 ? 'flex-start' : 'center' as const;
-          const ta = isLast || i === 2 ? 'right' : i === 3 ? 'left' : 'center' as const;
-          // Apr 4 (i=2) anchors RIGHT edge at 55%, text trails left
+          const align = isLast ? 'flex-end' : i === 3 ? 'flex-start' : 'center' as const;
+          const ta = isLast ? 'right' : i === 3 ? 'left' : 'center' as const;
+          // Apr 4 (i=2) shifted left to 35% for breathing room from Apr 6
           // Apr 6 (i=3) anchors LEFT edge at 65%, text trails right
           const posStyle = isLast
             ? { right: 0 }
-            : i === 2
-            ? { right: `${100 - ev.pct}%` }
-            : { left: `${ev.pct}%` };
+            : { left: i === 2 ? '35%' : `${ev.pct}%` };
           return (
           <motion.div
             key={ev.date}
