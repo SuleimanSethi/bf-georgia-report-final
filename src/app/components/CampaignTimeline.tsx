@@ -3,15 +3,15 @@
 import { motion } from 'motion/react';
 import { SectionTitle, Card, Label, GlowBar } from './Shared';
 import { timelineEvents, weekData } from '../../data/campaign';
-import { GOLD, GOLD_BRIGHT, COPPER_BRIGHT, DECO, TEXT, SUB, PAGE_BG } from '../tokens';
+import { GOLD, GOLD_BRIGHT, COPPER_BRIGHT, DECO, TEXT, SUB, LABEL as LABEL_COLOR, PAGE_BG } from '../tokens';
 
 export function CampaignTimeline() {
   return (
     <section id="section-timeline" style={{ padding: '52px 64px', overflow: 'hidden', background: `radial-gradient(ellipse at 50% 50%, rgba(196,120,72,0.05) 0%, transparent 70%), ${PAGE_BG}` }}>
       <SectionTitle color={COPPER_BRIGHT}>Campaign Timeline</SectionTitle>
 
-      {/* Timeline track */}
-      <div style={{ position: 'relative', height: 130, marginBottom: 48, overflow: 'hidden' }}>
+      {/* ── Desktop: horizontal track (sm+) ─────────────────────────── */}
+      <div className="hidden sm:block" style={{ position: 'relative', height: 130, marginBottom: 48, overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 60, left: 0, right: 0, height: 1, background: DECO }} />
         <motion.div
           initial={{ scaleX: 0 }}
@@ -34,8 +34,6 @@ export function CampaignTimeline() {
           const isLast = i === timelineEvents.length - 1;
           const align = isLast ? 'flex-end' : i === 3 ? 'flex-start' : 'center' as const;
           const ta = isLast ? 'right' : i === 3 ? 'left' : 'center' as const;
-          // Apr 4 (i=2) shifted left to 35% for breathing room from Apr 6
-          // Apr 6 (i=3) anchors LEFT edge at 65%, text trails right
           const posStyle = isLast
             ? { right: 0 }
             : { left: i === 2 ? '43%' : `${ev.pct}%` };
@@ -83,6 +81,50 @@ export function CampaignTimeline() {
         })}
       </div>
 
+      {/* ── Mobile: vertical track (<sm) ────────────────────────────── */}
+      <div className="sm:hidden" style={{ position: 'relative', paddingLeft: 40, marginBottom: 32 }}>
+        {/* Vertical track line */}
+        <div style={{ position: 'absolute', left: 15, top: 8, bottom: 8, width: 2, background: DECO }} />
+        <motion.div
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 1.8, ease: 'easeOut', delay: 0.3 }}
+          style={{
+            position: 'absolute', left: 14, top: 8, bottom: 8, width: 3,
+            background: `linear-gradient(180deg, ${COPPER_BRIGHT}, ${GOLD}, ${GOLD_BRIGHT})`,
+            transformOrigin: 'top',
+            boxShadow: `0 0 10px ${GOLD}50`,
+          }}
+        />
+
+        {timelineEvents.map((ev, i) => (
+          <motion.div
+            key={ev.date}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            style={{ position: 'relative', marginBottom: i === timelineEvents.length - 1 ? 0 : 28 }}
+          >
+            {/* Marker dot */}
+            <div style={{
+              position: 'absolute', left: -33, top: 2, width: 14, height: 14, borderRadius: '50%',
+              background: ev.color, boxShadow: `0 0 12px ${ev.color}, 0 0 24px ${ev.color}60`,
+            }} />
+            <motion.div
+              style={{ position: 'absolute', left: -37, top: -2, width: 22, height: 22, borderRadius: '50%', border: `1px solid ${ev.color}80` }}
+              animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+              transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.4 }}
+            />
+            {/* Date */}
+            <p style={{ color: ev.color, fontSize: 13, letterSpacing: '0.15em', textShadow: `0 0 12px ${ev.color}80`, marginBottom: 3 }}>{ev.date}</p>
+            {/* Label */}
+            <p style={{ color: TEXT, fontSize: 15, letterSpacing: '0.06em', marginBottom: 3 }}>{ev.label}</p>
+            {/* Description */}
+            <p style={{ color: SUB, fontSize: 13, lineHeight: 1.5 }}>{ev.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+
       {/* Week cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {weekData.map((w, i) => (
@@ -102,14 +144,14 @@ export function CampaignTimeline() {
                   <p style={{ color: SUB, fontSize: 12, letterSpacing: '0.15em' }}>ROAS</p>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-3 gap-3">
                 {[
                   { label: 'Spend',       value: `$${w.spend.toLocaleString()}` },
                   { label: 'Impressions', value: w.impressions.toLocaleString() },
                   { label: 'Purchases',   value: `${w.purchases}` },
                 ].map((s) => (
                   <div key={s.label}>
-                    <Label>{s.label}</Label>
+                    <p style={{ color: LABEL_COLOR, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase' }}>{s.label}</p>
                     <p style={{ color: TEXT, fontFamily: 'ui-monospace, monospace', fontSize: 18, marginTop: 4 }}>{s.value}</p>
                   </div>
                 ))}
